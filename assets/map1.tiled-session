@@ -1,0 +1,27 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "",
+    "expandedProjectPaths": [
+    ],
+    "fileStates": {
+        "maps/map1.tsx": {
+            "dynamicWrapping": true
+        }
+    },
+    "last.imagePath": "C:/Users/Beka/Downloads/kenney_platformer-art-deluxe/Request pack/Tiles",
+    "map.height": 20,
+    "map.tileHeight": 70,
+    "map.tileWidth": 70,
+    "map.width": 20,
+    "openFiles": [
+    ],
+    "project": "map1.tiled-project",
+    "property.type": "string",
+    "recentFiles": [
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.type": 1
+}
