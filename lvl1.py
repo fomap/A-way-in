@@ -15,7 +15,7 @@ def main():
     RED = (255, 0, 0)
     GREEN = (0, 255, 0)
     BROWN = (122, 49, 0)
-
+    pygame.display.set_caption("Level 1")   
     # Player class
     class Player(pygame.sprite.Sprite):
         def __init__(self):
@@ -103,10 +103,10 @@ def main():
 
 
     pygame.time.set_timer(pygame.USEREVENT, 1000)
-    countdown = 200
+    countdown = 100
     times_up = False
 
-    bg = pygame.image.load('assets/import/bg2.png')
+    bg = pygame.image.load('assets/import/map1.png')
 
     countdown_font = pygame.font.SysFont("comicsansms",40)
     countdown_text = countdown_font.render(f"Timelet {countdown}", True, (255,255,255))

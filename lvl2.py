@@ -23,7 +23,7 @@ def main():
             self.image = pygame.Surface((32, 32))
             self.image.fill(RED)
             self.rect = self.image.get_rect()
-            self.rect.topleft = (100, 100)
+            self.rect.topleft = (270, 680)
             self.speed = 5
 
         def update(self, keys):
@@ -56,9 +56,9 @@ def main():
 
     # Teleporter class
     class Teleport(pygame.sprite.Sprite):
-        def __init__(self, x, y, exit_x, exit_y):
+        def __init__(self, x, y, width, height, exit_x, exit_y):
             super().__init__()
-            self.image = pygame.Surface((20, 70))
+            self.image = pygame.Surface((width, height))
             self.image.fill(BROWN)
             self.rect = self.image.get_rect()
             self.rect.topleft = (x, y)
@@ -75,38 +75,61 @@ def main():
 
     # Create player, teleporter, exit, and walls
     player = Player()
-    exit = pygame.Rect(WIDTH - 50, HEIGHT // 2, 20, 70)
+    exit = pygame.Rect(1270, 750, 70, 20)
     
-    
-    
-    # teleporter1a = Teleport((WIDTH // 2) - 20, (HEIGHT // 2), 740, 220)
-    # teleporter1b = Teleport(715, 210, 740, 220)
-    # teleporter2a = Teleport(715, 600, 620, 420)
-
-
     player_sprites = pygame.sprite.Group()
     player_sprites.add(player)
-
-    # teleports= pygame.sprite.Group()
-    # teleports.add(teleporter1a, teleporter2a,teleporter1b)    
-
-    # wall_left = Wall(200, 0, 10, HEIGHT)
-    # wall_right = Wall(600, 0, 10, HEIGHT)
-    # wall_top = Wall(200, 0, 400, 10)
-    # wall_bottom = Wall(200, 590, 410, 10)
-    wall_center = Wall(WIDTH // 2, 0, 15, HEIGHT)
-
+    
+    wall1 = Wall(1200, 0, 15, HEIGHT)
+    wall2 = Wall(0, 555, 1200, 15 )
+    wall3 = Wall(0, 270, 1200, 15 )
+    wall4 = Wall(600, 0, 15, 270)
+    
 
     walls = pygame.sprite.Group()
-    walls.add(wall_center)
-    # walls.add(wall_top, wall_bottom)
+    walls.add(
+        wall1, 
+        wall2, 
+        wall3,
+        wall4
+        )
+    
+    teleporter1a = Teleport(1170, 660, 20, 70, 630, 160)
+    teleporter1b = Teleport(625, 125, 20, 70, 650, 135)
+    teleporter2a = Teleport(1170, 125, 20, 70, 120, 470)
+    teleporter2b = Teleport(100, 525, 80, 20, 120, 470)
+    teleporter3a = Teleport(1170, 390, 20, 70, 45, 670)
+    teleporter3b = Teleport(15, 660, 20, 70, 1130, 125)
+    teleporter4a = Teleport(280, 290, 70, 20, 240, 125)
+    teleporter4b = Teleport(225, 90, 70, 20, 240, 125)
+    teleporter5a = Teleport(15, 150, 20, 70, 1290, 125)
+    teleporter5b = Teleport(1270, 90, 70, 20,  1290, 125)
+    teleporter6a = Teleport(1225, 390, 20, 70, 120, 470)
+
+    teleports= pygame.sprite.Group()
+    teleports.add(
+        teleporter1a, 
+        teleporter1b,
+        teleporter2a,
+        teleporter2b,
+        teleporter3a,
+        teleporter3b,
+        teleporter4a,
+        teleporter4b,
+        teleporter5a,
+        teleporter5b,
+        teleporter6a
+        
+        )    
+
+
 
 
     pygame.time.set_timer(pygame.USEREVENT, 1000)
-    countdown = 300
+    countdown = 200
     times_up = False
 
-    bg = pygame.image.load('assets/import/bg1.png')
+    bg = pygame.image.load('assets/import/map2.png')
 
     countdown_font = pygame.font.SysFont("comicsansms",40)
     countdown_text = countdown_font.render(f"Timelet {countdown}", True, (255,255,255))
@@ -138,10 +161,10 @@ def main():
         keys = pygame.key.get_pressed()
         player.update(keys)
 
-        # Teleport if player collides with teleporter
-        # for teleporter in teleports:
-        #     if player.rect.colliderect(teleporter.rect):
-        #         player.rect.topleft = teleporter.exit_pos
+        
+        for teleporter in teleports:
+            if player.rect.colliderect(teleporter.rect):
+                player.rect.topleft = teleporter.exit_pos
 
         # Check if player reaches the exit
         if player.rect.colliderect(exit):
@@ -152,7 +175,7 @@ def main():
                 
         pygame.draw.rect(screen, GREEN, exit)
         player_sprites.draw(screen)
-        # teleports.draw(screen)
+        teleports.draw(screen)
         walls.draw(screen)
         countdown_text = countdown_font.render(f"Timeleft {countdown}", True, (255,255,255))
         screen.blit(countdown_text, countdown_rect)
