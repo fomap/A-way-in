@@ -101,7 +101,7 @@ def main():
     bg = pygame.image.load('assets/import/map1.png')
 
     countdown_font = pygame.font.SysFont("comicsansms",40)
-    countdown_text = countdown_font.render(f"Timelet {countdown}", True, (255,255,255))
+    countdown_text = countdown_font.render(f"Timeleft {countdown}", True, (255,255,255))
     countdown_rect = countdown_text.get_rect()
     countdown_rect.center = (WIDTH // 2, 40)
 
@@ -146,7 +146,7 @@ def main():
         player_sprites.draw(screen)
         teleports.draw(screen)
         walls.draw(screen)
-        countdown_text = countdown_font.render(f"Timeleft {countdown}", True, (255,255,255))
+        countdown_text = countdown_font.render(f"Time left {countdown}", True, (255,255,255))
         screen.blit(countdown_text, countdown_rect)
         debug_text = debug_font.render(f"X: {player.rect.x}, Y: {player.rect.y}", True, (255, 255, 255))
         screen.blit(debug_text, debug_rect)
