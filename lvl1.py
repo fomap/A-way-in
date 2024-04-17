@@ -23,7 +23,7 @@ def main():
             self.image = pygame.Surface((32, 32))
             self.image.fill(RED)
             self.rect = self.image.get_rect()
-            self.rect.topleft = (100, 100)
+            self.rect.topleft = (320, 455)
             self.speed = 5
 
         def update(self, keys):
@@ -103,10 +103,10 @@ def main():
 
 
     pygame.time.set_timer(pygame.USEREVENT, 1000)
-    countdown = 300
+    countdown = 200
     times_up = False
 
-    bg = pygame.image.load('assets/import/bg1.png')
+    bg = pygame.image.load('assets/import/bg2.png')
 
     countdown_font = pygame.font.SysFont("comicsansms",40)
     countdown_text = countdown_font.render(f"Timelet {countdown}", True, (255,255,255))
