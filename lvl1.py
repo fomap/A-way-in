@@ -5,7 +5,6 @@ def main():
     # Initialize Pygame
     pygame.init()
     WIDTH, HEIGHT = 1400, 800
-    start_tick = pygame.time.get_ticks()
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
     clock = pygame.time.Clock()
 
@@ -76,6 +75,8 @@ def main():
     # Create player, teleporter, exit, and walls
     player = Player()
     exit = pygame.Rect(WIDTH - 50, HEIGHT // 2, 20, 70)
+    player_sprites = pygame.sprite.Group()
+    player_sprites.add(player)
     
     
     
@@ -84,22 +85,13 @@ def main():
     teleporter2a = Teleport(715, 600, 620, 420)
 
 
-    player_sprites = pygame.sprite.Group()
-    player_sprites.add(player)
 
     teleports= pygame.sprite.Group()
     teleports.add(teleporter1a, teleporter2a,teleporter1b)    
-
-    # wall_left = Wall(200, 0, 10, HEIGHT)
-    # wall_right = Wall(600, 0, 10, HEIGHT)
-    # wall_top = Wall(200, 0, 400, 10)
-    # wall_bottom = Wall(200, 590, 410, 10)
     wall_center = Wall(WIDTH // 2, 0, 15, HEIGHT)
-
-
     walls = pygame.sprite.Group()
     walls.add(wall_center)
-    # walls.add(wall_top, wall_bottom)
+    
 
 
     pygame.time.set_timer(pygame.USEREVENT, 1000)
@@ -134,16 +126,16 @@ def main():
             if event.type == pygame.USEREVENT:
                 countdown -= 1
         screen.blit(bg, (0,0)) 
-        # Player movement
+        
         keys = pygame.key.get_pressed()
         player.update(keys)
 
-        # Teleport if player collides with teleporter
+        
         for teleporter in teleports:
             if player.rect.colliderect(teleporter.rect):
                 player.rect.topleft = teleporter.exit_pos
 
-        # Check if player reaches the exit
+        
         if player.rect.colliderect(exit):
             import lvl2
             lvl2.main()
