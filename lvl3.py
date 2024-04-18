@@ -14,7 +14,7 @@ def main():
     RED = (255, 0, 0)
     GREEN = (0, 255, 0)
     BROWN = (122, 49, 0)
-    pygame.display.set_caption("Level 2")   
+    pygame.display.set_caption("Level 3")   
 
     # Player class
     class Player(pygame.sprite.Sprite):
@@ -23,8 +23,11 @@ def main():
             self.image = pygame.Surface((32, 32))
             self.image.fill(RED)
             self.rect = self.image.get_rect()
-            self.rect.topleft = (270, 680)
+            self.rect.topleft = (80, 150)
             self.speed = 5
+
+        def updateSpeed(self):
+            self.speed = 7
 
         def update(self, keys):
             dx, dy = 0, 0
@@ -75,35 +78,38 @@ def main():
 
     
     player = Player()
-    exit = pygame.Rect(1270, 750, 70, 20)
+    exit = pygame.Rect(820, 435, 20, 70)
     
     player_sprites = pygame.sprite.Group()
     player_sprites.add(player)
     
-    wall1 = Wall(1200, 0, 15, HEIGHT)
-    wall2 = Wall(0, 555, 1200, 15 )
-    wall3 = Wall(0, 270, 1200, 15 )
-    wall4 = Wall(600, 0, 15, 270)
+    wallhorizontal = Wall(1000, 0, 15, 650)
+    walltop = Wall(0, 255, 1000, 15 )
+    wallvertical = Wall(1015, 450, 400, 15)
+    wallvertical2 = Wall(860, 400, 15, 135)
+    wallvertical3 = Wall(185, 400, 15, 260)
+    wallbottom = Wall(185, 650, 830, 15 )
+    wallbottom2 = Wall(185, 400, 680, 15 )
+    wallbottom3 = Wall(340, 520, 525, 15)
+ 
     
     walls = pygame.sprite.Group()
     walls.add(
-        wall1, 
-        wall2, 
-        wall3,
-        wall4
+        wallhorizontal, 
+        walltop,
+        wallvertical,
+        wallvertical2,
+        wallvertical3,
+        wallbottom,
+        wallbottom2,
+        wallbottom3
         )
     
-    teleporter1a = Teleport(1170, 660, 20, 70, 630, 160)
-    teleporter1b = Teleport(625, 125, 20, 70, 650, 135)
-    teleporter2a = Teleport(1170, 125, 20, 70, 120, 470)
-    teleporter2b = Teleport(100, 525, 80, 20, 120, 470)
-    teleporter3a = Teleport(1170, 390, 20, 70, 45, 670)
-    teleporter3b = Teleport(15, 660, 20, 70, 1130, 125)
-    teleporter4a = Teleport(280, 290, 70, 20, 240, 125)
-    teleporter4b = Teleport(225, 90, 70, 20, 240, 125)
-    teleporter5a = Teleport(15, 150, 20, 70, 1290, 125)
-    teleporter5b = Teleport(1270, 90, 70, 20,  1290, 125)
-    teleporter6a = Teleport(1225, 390, 20, 70, 120, 470)
+    teleporter1a = Teleport(970, 130, 20, 70, 1300, 285)
+    teleporter1b = Teleport(1370, 260, 20, 70,  1300, 285)
+    teleporter2a = Teleport(1170, 420, 70, 20, 1190, 510)
+    teleporter2b = Teleport(1170, 475, 70, 20, 1185, 380)
+
 
     teleports= pygame.sprite.Group()
     teleports.add(
@@ -111,21 +117,14 @@ def main():
         teleporter1b,
         teleporter2a,
         teleporter2b,
-        teleporter3a,
-        teleporter3b,
-        teleporter4a,
-        teleporter4b,
-        teleporter5a,
-        teleporter5b,
-        teleporter6a
         )    
 
 
     pygame.time.set_timer(pygame.USEREVENT, 1000)
-    countdown = 200
+    countdown = 20
     times_up = False
 
-    bg = pygame.image.load('assets/import/map2.png')
+    bg = pygame.image.load('assets/import/map3.png')
 
     countdown_font = pygame.font.SysFont("comicsansms",40)
     countdown_text = countdown_font.render(f"Time left {countdown}", True, (255,255,255))
@@ -137,9 +136,21 @@ def main():
     debug_rect = debug_text.get_rect()
     debug_rect.topleft = (30, 10)
 
-
+    transparent_color = RED
+    alpha = 0
+    shop = pygame.Surface((200, 100), pygame.SRCALPHA)
+    shop.fill((transparent_color[0], transparent_color[1], transparent_color[2], alpha))
     
+    coin = pygame.Rect(330, 150, 15, 15)
+    global coint_collected
+    global coint_given
+    
+
     done = False
+    coint_collected = False
+    coint_given = False
+
+
     while not done and times_up == False:
         
 
@@ -163,9 +174,24 @@ def main():
                 player.rect.topleft = teleporter.exit_pos
 
         
+        if not coint_collected:
+            pygame.draw.circle(screen, (230, 182, 28), (330, 150), 15)
+            
+
+        if player.rect.colliderect(coin):
+            coint_collected = True
+
+        if player.rect.colliderect(pygame.Rect(1100, 100, 200, 100)):
+            coint_given = True
+            
+
+        if coint_given:
+            player.updateSpeed()
+
+
         if player.rect.colliderect(exit):
-            import lvl3
-            lvl3.main()
+            import lvl2
+            lvl2.main()
             done = True
 
                 
@@ -173,6 +199,11 @@ def main():
         player_sprites.draw(screen)
         teleports.draw(screen)
         walls.draw(screen)
+        
+        
+        screen.blit(shop, (1100, 100))
+
+
         countdown_text = countdown_font.render(f"Time left {countdown}", True, (255,255,255))
         screen.blit(countdown_text, countdown_rect)
         debug_text = debug_font.render(f"X: {player.rect.x}, Y: {player.rect.y}", True, (255, 255, 255))

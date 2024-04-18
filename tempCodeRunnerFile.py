@@ -1,1 +1,0 @@
-  pygame.display.set_caption("Level 1")   
