@@ -87,17 +87,10 @@ def main():
     wallvertical2 = Wall(1150, 0, 15, 900)
     wallvertical3 = Wall(750, 0, 15, 900)
     wallvertical4 = Wall(250, 580, 15, 250)
-    # walltop = Wall(0, 255, 1000, 15 )
     wallhorizontal = Wall(750, 450, 410, 15)
     wallhorizontal2 = Wall(0, 580, 250, 15)
     wallhorizontal3 = Wall(0, 250, 250, 15)
     
-    # wallvertical2 = Wall(860, 400, 15, 135)
-    # wallvertical3 = Wall(185, 400, 15, 260)
-    # wallbottom = Wall(185, 650, 830, 15 )
-    # wallbottom2 = Wall(185, 400, 680, 15 )
-    # wallbottom3 = Wall(340, 520, 525, 15)
- 
     
     walls = pygame.sprite.Group()
     walls.add(
@@ -112,7 +105,7 @@ def main():
     
     teleporter1a = Teleport(220, 130, 20, 70, 660, 235)
     teleporter2a = Teleport(470, 90, 70, 20, 55, 415)
-    teleporter2b = Teleport(15, 400, 20, 70, 55, 415)
+    teleporter2b = Teleport(10, 400, 20, 70, 55, 415)
     teleporter3a = Teleport(715, 220, 20, 70, 1080, 240)
     teleporter3b = Teleport(1120, 220, 20, 70, 1080, 240)
     teleporter4a = Teleport(930, 415, 70, 20, 660, 235)
@@ -125,7 +118,7 @@ def main():
     teleporter9a = Teleport(95, 600, 70, 20, 660, 680)
     teleporter9b = Teleport(715, 660, 20, 70,  660, 680)
     teleporter10a = Teleport(470, 770, 70, 20, 1270, 115)
-    teleporter11a = Teleport(1250, 90, 70, 20, 490, 720)
+    teleporter11a = Teleport(1250, 90, 70, 20, 490, 720  )
 
     teleports= pygame.sprite.Group()
     teleports.add(
@@ -145,16 +138,14 @@ def main():
         teleporter9b,
         teleporter10a,
         teleporter11a,
-
-   
         )    
 
 
     pygame.time.set_timer(pygame.USEREVENT, 1000)
-    countdown = 500
+    countdown = 80
     times_up = False
 
-    bg = pygame.image.load('assets/import/bg.png')
+    bg = pygame.image.load('assets/import/map4.png')
 
     countdown_font = pygame.font.SysFont("comicsansms",40)
     countdown_text = countdown_font.render(f"Time left {countdown}", True, (255,255,255))
@@ -166,20 +157,13 @@ def main():
     debug_rect = debug_text.get_rect()
     debug_rect.topleft = (30, 10)
 
-    # transparent_color = RED
-    # alpha = 0
-    # shop = pygame.Surface((200, 100), pygame.SRCALPHA)
-    # shop.fill((transparent_color[0], transparent_color[1], transparent_color[2], alpha))
-    
-    # coin = pygame.Rect(330, 150, 15, 15)
-    # global coint_collected
-    # global coint_given
+ 
+    noetebook = pygame.Rect(25, 650, 25, 30)
+    global noetebook_collected
     
 
     done = False
-    # coint_collected = False
-    # coint_given = False
-
+    noetebook_collected = False
 
     while not done and times_up == False:
         
@@ -203,26 +187,20 @@ def main():
             if player.rect.colliderect(teleporter.rect):
                 player.rect.topleft = teleporter.exit_pos
 
-       #--------------------------------
-        # if not coint_collected:
-        #     pygame.draw.circle(screen, (230, 182, 28), (330, 150), 15)
+
+        if not noetebook_collected:
+            pygame.draw.rect(screen, GREEN, noetebook)
             
 
-        # if player.rect.colliderect(coin):
-        #     coint_collected = True
+        if player.rect.colliderect(noetebook):
+            noetebook_collected = True
 
-        # if player.rect.colliderect(pygame.Rect(1100, 100, 200, 100)):
-        #     coint_given = True
-            
-
-        # if coint_given:
-        #     player.updateSpeed()
-        #--------------------------------------------
 
         if player.rect.colliderect(exit):
-            # import lvl5
-            # lvl5.main()
-            done = True
+            if noetebook_collected == True:            
+                # import lvl5
+                # lvl5.main()
+                done = True
 
                 
         pygame.draw.rect(screen, GREEN, exit)
@@ -230,9 +208,6 @@ def main():
         teleports.draw(screen)
         walls.draw(screen)
         
-        
-        #screen.blit(shop, (1100, 100))
-
 
         countdown_text = countdown_font.render(f"Time left {countdown}", True, (255,255,255))
         screen.blit(countdown_text, countdown_rect)
