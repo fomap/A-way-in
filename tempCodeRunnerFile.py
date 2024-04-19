@@ -1,3 +1,1 @@
-
-        if coint_given:
-            player.updateSpeed()
+done = True

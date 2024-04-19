@@ -118,6 +118,7 @@ def main():
 
         if countdown == 0:
             times_up = True
+            done = True
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

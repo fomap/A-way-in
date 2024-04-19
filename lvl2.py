@@ -141,10 +141,12 @@ def main():
     
     done = False
     while not done and times_up == False:
-        
 
         if countdown == 0:
+            import lvl1
+            lvl1.main()
             times_up = True
+            done = True
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -152,6 +154,7 @@ def main():
                 
             if event.type == pygame.USEREVENT:
                 countdown -= 1
+
         screen.blit(bg, (0,0)) 
         
         keys = pygame.key.get_pressed()
