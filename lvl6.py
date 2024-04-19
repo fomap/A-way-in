@@ -193,6 +193,8 @@ def main():
 
         if countdown == 0:
             times_up = True
+            import lvl1
+            lvl1.main()
             done = True
 
         for event in pygame.event.get():
