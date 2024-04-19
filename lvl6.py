@@ -145,7 +145,7 @@ def main():
     countdown = 80
     times_up = False
 
-    bg = pygame.image.load('assets/import/map4.png')
+    bg = pygame.image.load('assets/import/bg.png')
 
     countdown_font = pygame.font.SysFont("comicsansms",40)
     countdown_text = countdown_font.render(f"Time left {countdown}", True, (255,255,255))
@@ -198,8 +198,8 @@ def main():
 
         if player.rect.colliderect(exit):
             if noetebook_collected == True:            
-                import lvl5
-                lvl5.main()
+                # import lvl5
+                # lvl5.main()
                 done = True
 
                 

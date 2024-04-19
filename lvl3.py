@@ -182,7 +182,8 @@ def main():
             coint_collected = True
 
         if player.rect.colliderect(pygame.Rect(1100, 100, 200, 100)):
-            coint_given = True
+            if coint_collected:
+                coint_given = True
             
 
         if coint_given:

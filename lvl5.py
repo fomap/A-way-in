@@ -14,7 +14,7 @@ def main():
     RED = (255, 0, 0)
     GREEN = (0, 255, 0)
     BROWN = (122, 49, 0)
-    pygame.display.set_caption("Level 4")   
+    pygame.display.set_caption("Level 5")   
 
     # Player class
     class Player(pygame.sprite.Sprite):
@@ -23,7 +23,7 @@ def main():
             self.image = pygame.Surface((32, 32))
             self.image.fill(RED)
             self.rect = self.image.get_rect()
-            self.rect.topleft = (80, 150)
+            self.rect.topleft = (845, 510)
             self.speed = 5
 
         def updateSpeed(self):
@@ -78,74 +78,91 @@ def main():
 
     
     player = Player()
-    exit = pygame.Rect(1250, 750, 70, 20)
+    exit = pygame.Rect(1295, 530, 70, 20)
     
     player_sprites = pygame.sprite.Group()
     player_sprites.add(player)
     
-    wallvertical = Wall(250, 0, 15, 265)
-    wallvertical2 = Wall(1150, 0, 15, 900)
-    wallvertical3 = Wall(750, 0, 15, 900)
-    wallvertical4 = Wall(250, 580, 15, 250)
-    wallhorizontal = Wall(750, 450, 410, 15)
-    wallhorizontal2 = Wall(0, 580, 250, 15)
-    wallhorizontal3 = Wall(0, 250, 250, 15)
+    wallmaintop = Wall(430, 250, 1000, 15)
+    wallmainright = Wall(430, 0, 15, 570)
+    wallmainleft = Wall(925, 265, 15, 320)
+    wallmainbottom = Wall(430, 570, 1000, 15)
+    wallroom1bottom = Wall(0, 470, 440, 15)
+    wallroom2right = Wall(625, 580, 15, 325)
+    wallroom4right = Wall(690, 80, 15, 180)
+    wallroom5right = Wall(1245, 265, 15, 320)
+    wallroom6right = Wall(1050, 570, 15, 320)
     
     
     walls = pygame.sprite.Group()
     walls.add(
-        wallvertical, 
-        wallvertical2,
-        wallvertical3,
-        wallvertical4,
-        wallhorizontal,
-        wallhorizontal2,
-        wallhorizontal3
+        wallmaintop,
+        wallmainright,
+        wallmainleft,
+        wallmainbottom,
+        wallroom1bottom,
+        wallroom2right,
+        wallroom4right,
+        wallroom5right,
+        wallroom6right
+        
         )
     
-    teleporter1a = Teleport(220, 130, 20, 70, 660, 235)
-    teleporter2a = Teleport(470, 90, 70, 20, 55, 415)
-    teleporter2b = Teleport(10, 400, 20, 70, 55, 415)
-    teleporter3a = Teleport(715, 220, 20, 70, 1080, 240)
-    teleporter3b = Teleport(1120, 220, 20, 70, 1080, 240)
-    teleporter4a = Teleport(930, 415, 70, 20, 660, 235)
-    teleporter5a = Teleport(780, 220, 20, 70, 660, 235)
-    teleporter6a = Teleport(930, 95, 70, 20, 950, 515)
-    teleporter6b = Teleport(930, 480, 70, 20, 950, 515)
-    teleporter7a = Teleport(780, 630, 20, 70, 660, 235)
-    teleporter8a = Teleport(1120, 630, 20, 70, 175, 700)
-    teleporter8b = Teleport(220, 680, 20, 70, 175, 700)
-    teleporter9a = Teleport(95, 600, 70, 20, 660, 680)
-    teleporter9b = Teleport(715, 660, 20, 70,  660, 680)
-    teleporter10a = Teleport(470, 770, 70, 20, 1270, 115)
-    teleporter11a = Teleport(1250, 90, 70, 20, 490, 720  )
+    teleporter1a = Teleport(655, 540, 70, 20, 190, 385)
+    teleporter1b = Teleport(170, 440, 70, 20, 190, 385)
+    teleporter2a = Teleport(10, 120, 20, 70, 1310, 150)
+    teleporter2b = Teleport(1370, 120, 20, 70, 1310, 150)
+    teleporter3a = Teleport(1055, 220, 70, 20, 1075, 305)
+    teleporter3b = Teleport(1055, 270, 70, 20, 1075, 305)
+    teleporter4a = Teleport(950, 385, 20, 70, 55, 700)
+    teleporter4b = Teleport(10, 680, 20, 70, 55, 700)
+    teleporter5a = Teleport(595, 680, 20, 70, 770, 140)
+    teleporter5b = Teleport(715, 120, 20, 70, 770, 140)
+    teleporter6a = Teleport(1055, 545, 70, 20, 555, 185)
+    teleporter6b = Teleport(540, 220, 70, 20, 555, 185)
+    teleporter7a = Teleport(460, 120, 20, 70, 970, 695)
+    teleporter7b = Teleport(1020, 680, 20, 70, 970, 695)
+    teleporter8a = Teleport(650, 680, 20, 70, 815, 305)
+    teleporter8b = Teleport(815, 270, 70, 20, 835, 295)
+    teleporter9a = Teleport(455, 385, 20, 70, 1315, 300)
+    teleporter9b = Teleport(1295, 270, 70, 20, 845, 415)
+    teleporter10a = Teleport(890, 385, 20, 70, 1115, 695)
+    teleporter10b = Teleport(1075, 680, 20, 70, 840, 405)
+    teleporter11a = Teleport(400, 120, 20, 70, 190, 530)
+    teleporter11b = Teleport(170, 500, 70, 20, 350, 135)
 
     teleports= pygame.sprite.Group()
     teleports.add(
         teleporter1a, 
+        teleporter1b,
         teleporter2a,
         teleporter2b,
         teleporter3a,
         teleporter3b,
         teleporter4a,
+        teleporter4b,
         teleporter5a,
+        teleporter5b,
         teleporter6a,
         teleporter6b,
         teleporter7a,
+        teleporter7b,
         teleporter8a,
         teleporter8b,
         teleporter9a,
         teleporter9b,
         teleporter10a,
+        teleporter10b,
         teleporter11a,
+        teleporter11b
         )    
 
 
     pygame.time.set_timer(pygame.USEREVENT, 1000)
-    countdown = 80
+    countdown = 50
     times_up = False
 
-    bg = pygame.image.load('assets/import/map4.png')
+    bg = pygame.image.load('assets/import/map5.png')
 
     countdown_font = pygame.font.SysFont("comicsansms",40)
     countdown_text = countdown_font.render(f"Time left {countdown}", True, (255,255,255))
@@ -158,11 +175,23 @@ def main():
     debug_rect.topleft = (30, 10)
 
  
-    noetebook = pygame.Rect(25, 650, 25, 30)
+    noetebook = pygame.Rect(635, 110, 25, 30)
+    coin = pygame.Rect(1310, 725, 15, 15)
+    
+    transparent_color = RED
+    alpha = 0
+    shop = pygame.Surface((200, 100), pygame.SRCALPHA)
+    shop.fill((transparent_color[0], transparent_color[1], transparent_color[2], alpha))
+    
     global noetebook_collected
+    global coint_collected
+    global coint_given
     
 
+
     done = False
+    coint_collected = False
+    coint_given = False
     noetebook_collected = False
 
     while not done and times_up == False:
@@ -195,11 +224,26 @@ def main():
         if player.rect.colliderect(noetebook):
             noetebook_collected = True
 
+        if not coint_collected:
+            pygame.draw.circle(screen, (230, 182, 28), (1310, 725), 15)
+            
+
+        if player.rect.colliderect(coin):
+            coint_collected = True
+
+        if player.rect.colliderect(pygame.Rect(510, 280, 200, 100)):
+            if coint_collected:
+                coint_given = True
+            
+
+        if coint_given:
+            player.updateSpeed()
+
 
         if player.rect.colliderect(exit):
             if noetebook_collected == True:            
-                import lvl5
-                lvl5.main()
+                import lvl6
+                lvl6.main()
                 done = True
 
                 
@@ -208,6 +252,7 @@ def main():
         teleports.draw(screen)
         walls.draw(screen)
         
+        screen.blit(shop, (510, 280))
 
         countdown_text = countdown_font.render(f"Time left {countdown}", True, (255,255,255))
         screen.blit(countdown_text, countdown_rect)
