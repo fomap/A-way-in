@@ -15,6 +15,10 @@ def main():
     GREEN = (0, 255, 0)
     BROWN = (122, 49, 0)
     pygame.display.set_caption("Level 4")   
+    pygame.mixer.music.load('assets/music/lvl4.mp3')
+    pygame.mixer.music.play(0)
+    noetebook_sound = pygame.mixer.Sound('assets/music/notebook.mp3')
+    
 
     # Player class
     class Player(pygame.sprite.Sprite):
@@ -176,8 +180,6 @@ def main():
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                import lvl1
-                lvl1.main()
                 done = True
                 
             if event.type == pygame.USEREVENT:
@@ -199,6 +201,7 @@ def main():
 
         if player.rect.colliderect(noetebook):
             noetebook_collected = True
+            noetebook_sound.play()
 
 
         if player.rect.colliderect(exit):

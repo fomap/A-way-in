@@ -9,6 +9,9 @@ def main(correct_ans):
     clock = pygame.time.Clock()
 
     pygame.display.set_caption("Final Screen")   
+    
+    pygame.mixer.music.load('assets/music/menu.mp3')
+    pygame.mixer.music.play(0)
 
 
 
@@ -63,7 +66,7 @@ def main(correct_ans):
 
     res = 4 - newans
     font = pygame.font.SysFont("comicsansms",40)
-    text = font.render(f"CONGRATULATIONS, YOU HAVE {res} RESTAKES!", True, (255,255,255))
+    text = font.render(f"CONGRATULATIONS, YOU HAVE {res} RESTAKE!", True, (255,255,255))
     rect = text.get_rect()
     rect.center = (WIDTH // 2, 40)
 
@@ -99,8 +102,11 @@ def main(correct_ans):
         if button3.click(screen):
             done = True
         
-
-        text = font.render(f"CONGRATULATIONS, YOU HAVE {res} RESTAKES!", True, (255,255,255))
+        if res == 1:
+            text = font.render(f"CONGRATULATIONS, YOU HAVE {res} RESTAKE!", True, (255,255,255))
+        else:
+            text = font.render(f"CONGRATULATIONS, YOU HAVE {res} RESTAKE!", True, (255,255,255))
+        #text = font.render(f"CONGRATULATIONS, YOU HAVE {res} RESTAKES!", True, (255,255,255))
         screen.blit(text, rect)
         
 

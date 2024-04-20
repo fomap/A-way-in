@@ -15,6 +15,10 @@ def main():
     GREEN = (0, 255, 0)
     BROWN = (122, 49, 0)
     pygame.display.set_caption("Level 3")   
+    pygame.mixer.music.load('assets/music/lvl3.mp3')
+    pygame.mixer.music.play(0)
+    coin_sound = pygame.mixer.Sound('assets/music/catch.mp3')
+    shop_sound = pygame.mixer.Sound('assets/music/shop.mp3')
 
     # Player class
     class Player(pygame.sprite.Sprite):
@@ -166,6 +170,7 @@ def main():
                 
             if event.type == pygame.USEREVENT:
                 countdown -= 1
+                
         screen.blit(bg, (0,0)) 
         
         keys = pygame.key.get_pressed()
@@ -183,10 +188,12 @@ def main():
 
         if player.rect.colliderect(coin):
             coint_collected = True
+            coin_sound.play()
 
         if player.rect.colliderect(pygame.Rect(1100, 100, 200, 100)):
             if coint_collected:
                 coint_given = True
+                shop_sound.play()
             
 
         if coint_given:

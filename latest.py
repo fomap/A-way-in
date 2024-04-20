@@ -15,7 +15,8 @@ def main():
     GREEN = (0, 255, 0)
     BROWN = (122, 49, 0)
     pygame.display.set_caption("Linear algebruh")   
-
+    pygame.mixer.music.load('assets/music/quiz.mp3')
+    pygame.mixer.music.play(-1)
 
 
 

@@ -15,6 +15,11 @@ def main():
     GREEN = (0, 255, 0)
     BROWN = (122, 49, 0)
     pygame.display.set_caption("Level 5")   
+    pygame.mixer.music.load('assets/music/lvl5.mp3')
+    pygame.mixer.music.play(0)
+    noetebook_sound = pygame.mixer.Sound('assets/music/notebook.mp3')
+    coin_sound = pygame.mixer.Sound('assets/music/catch.mp3')
+    shop_sound = pygame.mixer.Sound('assets/music/shop.mp3')
 
     # Player class
     class Player(pygame.sprite.Sprite):
@@ -226,6 +231,7 @@ def main():
 
         if player.rect.colliderect(noetebook):
             noetebook_collected = True
+            noetebook_sound.play()
 
         if not coint_collected:
             pygame.draw.circle(screen, (230, 182, 28), (1310, 725), 15)
@@ -233,10 +239,12 @@ def main():
 
         if player.rect.colliderect(coin):
             coint_collected = True
+            coin_sound.play()
 
         if player.rect.colliderect(pygame.Rect(510, 280, 200, 100)):
             if coint_collected:
                 coint_given = True
+                shop_sound.play()
             
 
         if coint_given:

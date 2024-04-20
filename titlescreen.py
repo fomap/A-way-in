@@ -10,6 +10,8 @@ def main():
 
     pygame.display.set_caption("A WAY IN")   
 
+    pygame.mixer.music.load('assets/music/menu.mp3')
+    pygame.mixer.music.play(0)
 
  
 #button class
@@ -64,7 +66,6 @@ def main():
 
     while not done:
         pygame.time.wait(100)
-
        
 
         for event in pygame.event.get():

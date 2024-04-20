@@ -15,6 +15,8 @@ def main():
     GREEN = (0, 255, 0)
     BROWN = (122, 49, 0)
     pygame.display.set_caption("Level 1")   
+    pygame.mixer.music.load('assets/music/lvl1.mp3')
+    pygame.mixer.music.play(0)
     # Player class
     class Player(pygame.sprite.Sprite):
         def __init__(self):

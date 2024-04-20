@@ -15,6 +15,8 @@ def main(correct_ans):
     GREEN = (0, 255, 0)
     BROWN = (122, 49, 0)
     pygame.display.set_caption("Discrete structures")   
+    pygame.mixer.music.load('assets/music/quiz.mp3')
+    pygame.mixer.music.play(-1)
 
     newans = correct_ans
 
