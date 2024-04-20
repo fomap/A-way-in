@@ -210,8 +210,8 @@ def main():
 
         countdown_text = countdown_font.render(f"Time left {countdown}", True, (255,255,255))
         screen.blit(countdown_text, countdown_rect)
-        debug_text = debug_font.render(f"X: {player.rect.x}, Y: {player.rect.y}", True, (255, 255, 255))
-        screen.blit(debug_text, debug_rect)
+        # debug_text = debug_font.render(f"X: {player.rect.x}, Y: {player.rect.y}", True, (255, 255, 255))
+        # screen.blit(debug_text, debug_rect)
 
         pygame.display.flip()
         clock.tick(60)

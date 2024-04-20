@@ -109,8 +109,8 @@ def main():
     teleporter2a = Teleport(155, 555, 20, 70, 1080, 115)
     teleporter2b = Teleport(1050, 105, 20, 70, 1080, 115)
     teleporter3a = Teleport(1050, 280, 20, 70, 505, 305)
-    teleporter3b = Teleport(480, 290, 20, 70,505, 305)
-    teleporter10a = Teleport(900, 290, 20, 70, 685, 615)
+    teleporter3b = Teleport(480, 290, 20, 70, 505, 305)
+    teleporter10a = Teleport(905, 287, 20, 70, 685, 615)
     teleporter10b = Teleport(665, 585, 70, 20, 685, 615)
     teleporter4a = Teleport(1370, 185, 20, 70, 280, 440)
     teleporter4b = Teleport(260, 405, 70, 20, 280, 440)
@@ -153,7 +153,7 @@ def main():
 
 
     pygame.time.set_timer(pygame.USEREVENT, 1000)
-    countdown = 500
+    countdown = 70
     times_up = False
 
     bg = pygame.image.load('assets/import/map6.png')
@@ -239,8 +239,8 @@ def main():
 
         if player.rect.colliderect(exit):
             if noetebook_collected == True:   
-                import test
-                test.main()         
+                import latest
+                latest.main()         
                 done = True
 
                 
