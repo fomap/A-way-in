@@ -25,7 +25,8 @@ def main():
             self.rect = self.image.get_rect()
             self.rect.topleft = (270, 680)
             self.speed = 5
-
+    
+        #Movement     
         def update(self, keys):
             dx, dy = 0, 0
             if keys[pygame.K_a] and self.rect.x > 0:
@@ -37,7 +38,7 @@ def main():
             if keys[pygame.K_s] and self.rect.y < screen.get_height()-30:
                 dy += self.speed
 
-            
+            #Collision with walls
             self.rect.x += dx
             for wall in walls:
                 if pygame.sprite.collide_rect(self, wall):
