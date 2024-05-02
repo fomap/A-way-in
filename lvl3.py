@@ -125,7 +125,7 @@ def main():
 
 
     pygame.time.set_timer(pygame.USEREVENT, 1000)
-    countdown = 14
+    countdown = 15
     times_up = False
 
     bg = pygame.image.load('assets/import/map3.png')
