@@ -103,10 +103,10 @@ def main(correct_ans):
             done = True
         
         if res == 1:
-            text = font.render(f"CONGRATULATIONS, YOU HAVE {res} RESTAKE!", True, (255,255,255))
+            text = font.render(f"CONGRATULATIONS, YOU HAVE {res} RETAKE!", True, (255,255,255))
         else:
-            text = font.render(f"CONGRATULATIONS, YOU HAVE {res} RESTAKE!", True, (255,255,255))
-        #text = font.render(f"CONGRATULATIONS, YOU HAVE {res} RESTAKES!", True, (255,255,255))
+            text = font.render(f"CONGRATULATIONS, YOU HAVE {res} RETAKES!", True, (255,255,255))
+     
         screen.blit(text, rect)
         
 

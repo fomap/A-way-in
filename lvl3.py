@@ -125,7 +125,7 @@ def main():
 
 
     pygame.time.set_timer(pygame.USEREVENT, 1000)
-    countdown = 20
+    countdown = 14
     times_up = False
 
     bg = pygame.image.load('assets/import/map3.png')
@@ -186,12 +186,12 @@ def main():
             pygame.draw.circle(screen, (230, 182, 28), (330, 150), 15)
             
 
-        if player.rect.colliderect(coin):
+        if player.rect.colliderect(coin) and coint_collected == False:
             coint_collected = True
             coin_sound.play()
 
         if player.rect.colliderect(pygame.Rect(1100, 100, 200, 100)):
-            if coint_collected:
+            if coint_collected and coint_given == False:
                 coint_given = True
                 shop_sound.play()
             

@@ -199,7 +199,7 @@ def main():
             pygame.draw.rect(screen, GREEN, noetebook)
             
 
-        if player.rect.colliderect(noetebook):
+        if player.rect.colliderect(noetebook) and noetebook_collected == False:
             noetebook_collected = True
             noetebook_sound.play()
 

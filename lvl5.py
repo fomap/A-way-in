@@ -229,7 +229,7 @@ def main():
             pygame.draw.rect(screen, GREEN, noetebook)
             
 
-        if player.rect.colliderect(noetebook):
+        if player.rect.colliderect(noetebook) and noetebook_collected == False:
             noetebook_collected = True
             noetebook_sound.play()
 
@@ -237,12 +237,12 @@ def main():
             pygame.draw.circle(screen, (230, 182, 28), (1310, 725), 15)
             
 
-        if player.rect.colliderect(coin):
+        if player.rect.colliderect(coin) and coint_collected == False:
             coint_collected = True
             coin_sound.play()
 
         if player.rect.colliderect(pygame.Rect(510, 280, 200, 100)):
-            if coint_collected:
+            if coint_collected and coint_given == False:
                 coint_given = True
                 shop_sound.play()
             

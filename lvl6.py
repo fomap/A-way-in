@@ -223,7 +223,7 @@ def main():
             pygame.draw.rect(screen, GREEN, noetebook)
             
 
-        if player.rect.colliderect(noetebook):
+        if player.rect.colliderect(noetebook) and noetebook_collected == False:
             noetebook_collected = True
             noetebook_sound.play()
 
@@ -231,12 +231,12 @@ def main():
             pygame.draw.circle(screen, (230, 182, 28), (1125, 430), 15)
             
 
-        if player.rect.colliderect(coin):
+        if player.rect.colliderect(coin) and coint_collected == False:
             coint_collected = True
             coin_sound.play()
 
         if player.rect.colliderect(pygame.Rect(395, 590, 200, 100)):
-            if coint_collected:
+            if coint_collected and coint_given == False:
                 coint_given = True
                 shop_sound.play()
             
@@ -261,9 +261,7 @@ def main():
 
         countdown_text = countdown_font.render(f"Time left {countdown}", True, (255,255,255))
         screen.blit(countdown_text, countdown_rect)
-        debug_text = debug_font.render(f"X: {player.rect.x}, Y: {player.rect.y}", True, (255, 255, 255))
-        screen.blit(debug_text, debug_rect)
-
+      
         pygame.display.flip()
         clock.tick(60)
 

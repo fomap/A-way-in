@@ -88,7 +88,7 @@ def main(correct_ans):
 
 
     while not done and times_up == False:
-        pygame.time.wait(100)
+        pygame.time.wait(200)
 
         if countdown == 0:
             times_up = True
